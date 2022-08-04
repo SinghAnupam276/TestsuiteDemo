@@ -26,7 +26,7 @@ stages:
           - task: UiPathTest@2
             inputs:
               testTarget: 'TestSet'
-              orchestratorConnection: 'Az2DefTent_Conn'
+              orchestratorConnection: 'MbTest_Az2Ui'
               testSet: 'MobileTestSet'
               folderName: 'Shared'
     - stage:
@@ -39,7 +39,7 @@ stages:
             versionType: 'AutoVersion'
             projectJsonPath: '$(Build.SourcesDirectory)\project.json'
             outputType: 'Process'
-            orchestratorConnection: 'Az2DefTent_Conn'
+            orchestratorConnection: 'MbTest_Az2Ui'
             outputPath: '$(Build.ArtifactStagingDirectory)\SIR'
         - publish: $(Build.ArtifactStagingDirectory)\SIR
           artifact: drop
@@ -58,6 +58,6 @@ stages:
            steps:
             - task: UiPathDeploy@2
               inputs:
-                orchestratorConnection: 'AZ2UATOrch_Conn'
+                orchestratorConnection: 'MbTest_Az2Ui'
                 packagesPath: '$(Pipeline.Workspace)\drop\'
                 folderName: 'Shared'
